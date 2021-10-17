@@ -1,0 +1,1 @@
+from .canny import CannyDetector
