@@ -67,6 +67,7 @@ def get_state_dict(filter_size=5, std=1.0, map_func=lambda x:x):
           [ 0.,  0.,  0.]]]], 
         dtype=np.float32
     )
+
     connect_filter = np.array([[[
         [1., 1., 1.], 
         [1., 0., 1.], 
