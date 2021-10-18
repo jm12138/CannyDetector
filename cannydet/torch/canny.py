@@ -2,80 +2,33 @@ import torch
 import torch.nn as nn
 
 import math
-import numpy as np
 
-from scipy.signal import gaussian
+from ..units import get_state_dict
 
 
 class CannyDetector(nn.Module):
     def __init__(self, filter_size=5, std=1.0, device='cpu'):
         super(CannyDetector, self).__init__()
+        # 配置运行设备
         self.device = device
+
         # 高斯滤波器
-        generated_filters = gaussian(filter_size,std=std).reshape([1,filter_size])
-
         self.gaussian_filter_horizontal = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=(1,filter_size), padding=(0,filter_size//2), bias=False)
-        self.gaussian_filter_horizontal.weight.data.copy_(torch.from_numpy(generated_filters[None, None, ...].astype('float32')))
         self.gaussian_filter_vertical = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=(filter_size,1), padding=(filter_size//2,0), bias=False)
-        self.gaussian_filter_vertical.weight.data.copy_(torch.from_numpy(generated_filters.T[None, None, ...].astype('float32')))
-
 
         # Sobel 滤波器
-        sobel_filter = np.array([[1, 0, -1],
-                                 [2, 0, -2],
-                                 [1, 0, -1]])
-
-        self.sobel_filter_horizontal = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=sobel_filter.shape, padding=sobel_filter.shape[0]//2, bias=False)
-        self.sobel_filter_horizontal.weight.data.copy_(torch.from_numpy(sobel_filter[None, None, ...].astype('float32')))
-        self.sobel_filter_vertical = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=sobel_filter.shape, padding=sobel_filter.shape[0]//2, bias=False)
-        self.sobel_filter_vertical.weight.data.copy_(torch.from_numpy(sobel_filter.T[None, None, ...].astype('float32')))
+        self.sobel_filter_horizontal = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=3, padding=1, bias=False)
+        self.sobel_filter_vertical = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=3, padding=1, bias=False)
 
         # 定向滤波器
-        filter_0 = np.array([[ 0, 0, 0],
-                             [ 0, 1, -1],
-                             [ 0, 0, 0]])
-
-        filter_45 = np.array([[0, 0, 0],
-                              [ 0, 1, 0],
-                              [ 0, 0, -1]])
-
-        filter_90 = np.array([[ 0, 0, 0],
-                              [ 0, 1, 0],
-                              [ 0,-1, 0]])
-
-        filter_135 = np.array([[ 0, 0, 0],
-                               [ 0, 1, 0],
-                               [-1, 0, 0]])
-
-        filter_180 = np.array([[ 0, 0, 0],
-                               [-1, 1, 0],
-                               [ 0, 0, 0]])
-
-        filter_225 = np.array([[-1, 0, 0],
-                               [ 0, 1, 0],
-                               [ 0, 0, 0]])
-
-        filter_270 = np.array([[ 0,-1, 0],
-                               [ 0, 1, 0],
-                               [ 0, 0, 0]])
-
-        filter_315 = np.array([[ 0, 0, -1],
-                               [ 0, 1, 0],
-                               [ 0, 0, 0]])
-
-        all_filters = np.stack([filter_0, filter_45, filter_90, filter_135, filter_180, filter_225, filter_270, filter_315])
-
-        self.directional_filter = nn.Conv2d(in_channels=1, out_channels=8, kernel_size=filter_0.shape, padding=filter_0.shape[-1] // 2, bias=False)
-        self.directional_filter.weight.data.copy_(torch.from_numpy(all_filters[:, None, ...].astype('float32')))
-
+        self.directional_filter = nn.Conv2d(in_channels=1, out_channels=8, kernel_size=3, padding=1, bias=False)
 
         # 连通滤波器
-        connect_filter = np.array([[1, 1, 1],
-                                 [1, 0, 1],
-                                 [1, 1, 1]])
+        self.connect_filter = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=3, padding=1, bias=False)
 
-        self.connect_filter = nn.Conv2d(in_channels=1, out_channels=1, kernel_size=connect_filter.shape, padding=connect_filter.shape[0]//2, bias=False)
-        self.connect_filter.weight.data.copy_(torch.from_numpy(connect_filter[None, None, ...].astype('float32')))
+        # 初始化参数
+        params = get_state_dict(filter_size=filter_size, std=std, map_func=lambda x:torch.from_numpy(x).to(self.device))
+        self.load_state_dict(params)
 
     @torch.no_grad()
     def forward(self, img, threshold1=10.0, threshold2=100.0):
@@ -155,6 +108,7 @@ class CannyDetector(nn.Module):
 
 if __name__ == '__main__':
     import cv2
+    import numpy as np
     img_path = '1-5.png'
     res_path = "1-5_torch_our.png"
     img = cv2.imread(img_path)/255.0 # height, width, channel

@@ -3,6 +3,9 @@ import cv2
 import time
 import numpy as np
 
+from cannydet.units import auto_canny
+
+
 test_imgs = os.listdir('test_imgs')
 test_imgs_path = [os.path.join('test_imgs', img) for img in test_imgs]
 
@@ -20,21 +23,6 @@ def make_res_dir(name, ext='png'):
         fname, _ = os.path.splitext(img)
         res_imgs_path.append(os.path.join(name, fname+'.%s' % ext))
     return res_imgs_path
-
-
-def auto_canny(image, input=None, sigma=0.33, canny_func=cv2.Canny, scale=1):
-    # 计算单通道像素强度的中位数
-    v = np.median(image)
-
-    # 选择合适的lower和upper值，然后应用它们
-    lower = int(max(0, (1.0 - sigma) * v)) * scale
-    upper = int(min(255, (1.0 + sigma) * v)) * scale
-    if input is not None:
-        edged = canny_func(input, lower, upper)
-    else:
-        edged = canny_func(image, lower, upper)
-
-    return edged
 
 
 def test_paddle(test_imgs_path=test_imgs_path, thresholds=[[2.5, 5] for _ in range(5)], output_dir='results/paddle', device='cpu'):
