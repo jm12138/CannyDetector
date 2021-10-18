@@ -1,4 +1,11 @@
 import os
+import sys  
+file_path = os.path.abspath(__file__)
+infer_dir = os.path.dirname(file_path)
+package_dir = os.path.dirname(infer_dir)
+sys.path.append(package_dir)
+
+import os
 import cv2
 import time
 import numpy as np

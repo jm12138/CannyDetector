@@ -15,15 +15,17 @@
     ```bash
     │ requirements.txt # 依赖模块列表
     │
-    │ test_all.py # 测试脚本
-    │
-    │ test_opencv.py # OpenCV 测试脚本
-    │
-    │ test_paddle.py # Paddle 测试脚本
-    │
-    │ test_python.py # Python 测试脚本
-    │
-    │ test_pytorch.py # Pytorch 测试脚本
+    ├─tools # 脚本工具
+    │  │ 
+    │  ├─test_all.py # 总体测试脚本
+    │  │ 
+    │  ├─test_opencv.py # OpenCV 测试脚本
+    │  │ 
+    │  ├─test_paddle.py # Paddle 测试脚本
+    │  │ 
+    │  ├─test_python.py # Python 测试脚本
+    │  │ 
+    │  └─test_pytorch.py # Pytorch 测试脚本
     │  
     ├─cannydet # Canny 边缘检测器代码
     │  │ 
@@ -93,19 +95,19 @@
 
     ```bash
     # 运行所有实现的测试脚本
-    $ python test_all.py
+    $ python tools/test_all.py
 
     # 运行 OpenCV 实现的测试脚本
-    $ python test_opencv.py
+    $ python tools/test_opencv.py
 
     # 运行 Python 实现的测试脚本
-    $ python test_python.py
+    $ python tools/test_python.py
 
     # 运行 Pytorch 实现的测试脚本
-    $ python test_pytorch.py
+    $ python tools/test_pytorch.py
 
     # 运行 Paddle 实现的测试脚本
-    $ python test_paddle.py
+    $ python tools/test_paddle.py
     ```
 
 * 使用脚本对自定义图片进行边缘检测：

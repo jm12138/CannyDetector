@@ -1,3 +1,10 @@
+import os
+import sys  
+file_path = os.path.abspath(__file__)
+infer_dir = os.path.dirname(file_path)
+package_dir = os.path.dirname(infer_dir)
+sys.path.append(package_dir)
+
 import cv2
 import numpy as np
 from cannydet.python import canny
