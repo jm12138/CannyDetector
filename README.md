@@ -213,3 +213,27 @@
         cv2.waitKey(0)  # 等待响应
         cv2.imwrite(res_path, edge)  # 结果保存
         ```
+
+# 参考资料
+* 参考论文：
+
+    ```
+    @ARTICLE{4767851,
+    author={Canny, John},
+    journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+    title={A Computational Approach to Edge Detection}, 
+    year={1986},
+    volume={PAMI-8},
+    number={6},
+    pages={679-698},
+    doi={10.1109/TPAMI.1986.4767851}}
+    ```
+
+* 参考项目：
+
+    * [DCurro/CannyEdgePytorch](https://github.com/DCurro/CannyEdgePytorch)
+
+* 参考文章：
+
+    * [Canny边缘检测 原理&&python代码](https://blog.csdn.net/xiachong27/article/details/88385123)
+    * [Canny 边缘检测算法-python实现](https://ai-chen.github.io/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/2019/08/21/Canny-%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95.html)
