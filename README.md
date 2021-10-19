@@ -5,7 +5,7 @@
 
     * Python：使用 numpy 模块的原生 python 实现的简易版本 Canny 边缘检测器，效果一般
 
-    * Pytorch：基于 torch 深度学习框架实现的运用矩阵运算并行加速、GPU 计算加速的 Canny 边缘检测器，使用 Sobel 算子计算强度梯度，效果较好
+    * Pytorch：基于 torch 深度学习框架实现的运用矩阵运算并行加速、GPU 计算加速的 Canny 边缘检测器，效果较好
 
     * Paddle：基于 paddle 深度学习框架实现，功能与结果与 torch 版本保持一致
 
@@ -236,4 +236,5 @@
 * 参考文章：
 
     * [Canny边缘检测 原理&&python代码](https://blog.csdn.net/xiachong27/article/details/88385123)
+
     * [Canny 边缘检测算法-python实现](https://ai-chen.github.io/%E4%BC%A0%E7%BB%9F%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95/2019/08/21/Canny-%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95.html)
