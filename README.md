@@ -123,6 +123,7 @@
         ```python
         import cv2
         import numpy as np
+        
         from cannydet.python import canny
 
         lower = 0.1 # 最小阈值
@@ -146,6 +147,7 @@
         import cv2
         import torch
         import numpy as np
+        
         from cannydet.torch import CannyDetector
 
         lower = 2.5  # 最小阈值
@@ -176,6 +178,7 @@
         import cv2
         import paddle
         import numpy as np
+        
         from cannydet.paddle import CannyDetector
 
         lower = 2.5  # 最小阈值
