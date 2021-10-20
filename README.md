@@ -15,6 +15,8 @@
     ```bash
     │ requirements.txt # 依赖模块列表
     │
+    | CannyDetector.ipynb # Jupyter Notebook
+    |
     ├─tools # 脚本工具
     │  │ 
     │  ├─test_all.py # 总体测试脚本
