@@ -66,7 +66,7 @@ class CannyDetector(nn.Layer):
 
         batch, _, height, width = inidices_positive.shape
         pixel_count = height * width * batch
-        pixel_range = paddle.to_tensor([range(pixel_count)])
+        pixel_range = paddle.to_tensor([range(pixel_count)], dtype='float32')
 
         indices = (inidices_positive.reshape((-1, )) * pixel_count + pixel_range).squeeze()
         channel_select_filtered_positive = all_filtered.reshape((-1, ))[indices.cast('int64')].reshape((batch, 1, height, width))
