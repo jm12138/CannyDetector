@@ -9,7 +9,7 @@
 
     * Paddle：基于 paddle 深度学习框架实现，功能与结果与 torch 版本保持一致
 
-* 项目详解：[Jupyter Notebook](./CannyDetector.ipynb)
+* 项目总览：[Jupyter Notebook](./CannyDetector.ipynb)
 
 # 目录结构
 * 本项目大致的文件目录结构及功能如下：
