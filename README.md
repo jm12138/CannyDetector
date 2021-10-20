@@ -12,11 +12,11 @@
 # 目录结构
 * 本项目大致的文件目录结构及功能如下：
 
-    ```bash
+    ```
     │ requirements.txt # 依赖模块列表
     │
-    | CannyDetector.ipynb # Jupyter Notebook
-    |
+    │ CannyDetector.ipynb # Jupyter Notebook
+    │
     ├─tools # 脚本工具
     │  │ 
     │  ├─test_all.py # 总体测试脚本
