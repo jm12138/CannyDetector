@@ -1,8 +1,4 @@
 # 简介
-* 本项目基于 https://github.com/jm12138/CannyDetector 针对大批量数据的边缘检测进行修改，采用torch.gather提取正负样本
-* 原先转为向量的方式在大批量数据下不可用，引发cuda error:device-side assert triggered
-
-
 * 一个基于 Python 和 cv2 / numpy / scipy / torch / paddle 等模块实现的 Canny 边缘检测器
 
 * 本项目中包含如下三个版本的 Canny 边缘检测器：
@@ -15,7 +11,10 @@
 
 * 项目总览：[Jupyter Notebook](./CannyDetector.ipynb)
 
-* 在线体验：[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jm12138/CannyDetector/blob/main/CannyDetector.ipynb)   [![](https://img.shields.io/badge/AIStudio-Open%20in%20AIStudio-blue)](https://aistudio.baidu.com/aistudio/projectdetail/2490960)      
+* 在线体验：[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jm12138/CannyDetector/blob/main/CannyDetector.ipynb)   [![](https://img.shields.io/badge/AIStudio-Open%20in%20AIStudio-blue)](https://aistudio.baidu.com/aistudio/projectdetail/2490960)
+   
+# 更新
+* 【Bug Fix】修复大批量数据的边缘检测报错的问题 @Beat-in-our-hearts #2
 
 # 目录结构
 * 本项目大致的文件目录结构及功能如下：
