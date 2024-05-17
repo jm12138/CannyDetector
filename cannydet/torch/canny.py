@@ -66,16 +66,9 @@ class CannyDetector(nn.Module):
 
         inidices_positive = (grad_orientation / 45) % 8
         inidices_negative = ((grad_orientation / 45) + 4) % 8
-
-        batch, _, height, width = inidices_positive.shape
-        pixel_count = height * width * batch
-        pixel_range = torch.Tensor([range(pixel_count)]).to(self.device)
-
-        indices = (inidices_positive.reshape((-1, )) * pixel_count + pixel_range).squeeze()
-        channel_select_filtered_positive = all_filtered.reshape((-1, ))[indices.long()].reshape((batch, 1, height, width))
-
-        indices = (inidices_negative.reshape((-1, )) * pixel_count + pixel_range).squeeze()
-        channel_select_filtered_negative = all_filtered.reshape((-1, ))[indices.long()].reshape((batch, 1, height, width))
+    
+        channel_select_filtered_positive = torch.gather(all_filtered, 1, inidices_positive.long())
+        channel_select_filtered_negative = torch.gather(all_filtered, 1, inidices_negative.long())
 
         channel_select_filtered = torch.stack([channel_select_filtered_positive, channel_select_filtered_negative])
 

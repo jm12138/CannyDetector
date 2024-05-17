@@ -11,7 +11,10 @@
 
 * 项目总览：[Jupyter Notebook](./CannyDetector.ipynb)
 
-* 在线体验：[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jm12138/CannyDetector/blob/main/CannyDetector.ipynb)   [![](https://img.shields.io/badge/AIStudio-Open%20in%20AIStudio-blue)](https://aistudio.baidu.com/aistudio/projectdetail/2490960)      
+* 在线体验：[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jm12138/CannyDetector/blob/main/CannyDetector.ipynb)   [![](https://img.shields.io/badge/AIStudio-Open%20in%20AIStudio-blue)](https://aistudio.baidu.com/aistudio/projectdetail/2490960)
+   
+# 更新
+* 【Bug Fix】修复大批量数据的边缘检测报错的问题 @Beat-in-our-hearts #2
 
 # 目录结构
 * 本项目大致的文件目录结构及功能如下：
