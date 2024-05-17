@@ -1,4 +1,8 @@
 # 简介
+* 本项目基于 https://github.com/jm12138/CannyDetector 针对大批量数据的边缘检测进行修改，采用torch.gather提取正负样本
+* 原先转为向量的方式在大批量数据下不可用，引发cuda error:device-side assert triggered
+
+
 * 一个基于 Python 和 cv2 / numpy / scipy / torch / paddle 等模块实现的 Canny 边缘检测器
 
 * 本项目中包含如下三个版本的 Canny 边缘检测器：
